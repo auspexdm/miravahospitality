@@ -3,209 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Properties — Mirava Hospitality | Alibag & Murud Stays</title>
-  <meta name="description" content="Browse our curated collection of villas, hotels and cottages in Alibag and Murud. Filter by type and find your perfect coastal stay." />
+  <title>Book Your Stay — Mirava Hospitality</title>
+  <meta name="description" content="Book your perfect coastal stay in Alibag or Murud. Fill in your details and our team will confirm your booking promptly." />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* ── PROPERTIES PAGE STYLES ── */
+    .booking-section { background: var(--sand); padding: 64px 0 90px; }
+    .booking-layout { display: grid; grid-template-columns: 1fr 1.65fr; gap: 40px; align-items: start; }
 
-    .filter-bar {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 72px;
-      z-index: 100;
-      padding: 0 24px;
-      box-shadow: var(--shadow-sm);
-    }
-    .filter-bar-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 14px 0;
-      flex-wrap: wrap;
-    }
-    .filter-tabs {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .filter-tab {
-      padding: 9px 20px;
-      border-radius: 100px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      border: 1.5px solid var(--border);
-      color: var(--text-mid);
-      background: var(--white);
-    }
-    .filter-tab:hover { border-color: var(--accent); color: var(--primary-mid); }
-    .filter-tab.active {
-      background: var(--primary-mid);
-      color: var(--white);
-      border-color: var(--primary-mid);
-    }
-    .filter-tab span { margin-right: 5px; }
+    /* Sidebar */
+    .contact-sidebar { position: sticky; top: 100px; }
+    .sidebar-card { background: var(--white); border-radius: var(--radius-lg); padding: 32px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); margin-bottom: 24px; }
+    .sidebar-card h3 { color: var(--primary); font-size: 1.2rem; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+    .contact-detail { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
+    .contact-detail:last-child { margin-bottom: 0; }
+    .contact-detail-icon { width: 44px; height: 44px; background: var(--accent-pale); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .contact-detail-text .label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light); margin-bottom: 2px; }
+    .contact-detail-text .value { font-size: 0.92rem; font-weight: 500; color: var(--text-dark); }
+    .whatsapp-btn { width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px; background: #25D366; color: var(--white); border-radius: var(--radius-md); font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: var(--transition); margin-top: 4px; }
+    .whatsapp-btn:hover { background: #1EB258; transform: translateY(-2px); }
+    .quick-tip { background: var(--accent-pale); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 14px 16px; font-size: 0.85rem; color: var(--primary-mid); line-height: 1.6; }
+    .quick-tip strong { display: block; margin-bottom: 4px; }
 
-    .filter-count {
-      font-size: 0.88rem;
-      color: var(--text-light);
-    }
-    .filter-count strong { color: var(--primary); }
+    /* Form card */
+    .booking-form-card { background: var(--white); border-radius: var(--radius-xl); padding: 44px; border: 1px solid var(--border); box-shadow: var(--shadow-md); }
+    .form-header { margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .form-header .section-label { margin-bottom: 10px; }
+    .form-header h2 { color: var(--primary); font-size: 1.8rem; margin-bottom: 8px; }
+    .form-header p  { color: var(--text-light); font-size: 0.92rem; }
+    .form-section-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin: 28px 0 16px; display: flex; align-items: center; gap: 8px; }
+    .form-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
-    /* Properties grid */
-    .properties-section { padding: 48px 0 90px; background: var(--sand); }
-    .props-grid-full {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      margin-top: 0;
-    }
+    /* Type selector */
+    .type-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .type-option input[type="radio"] { display: none; }
+    .type-option label { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 18px 12px; border: 2px solid var(--border); border-radius: var(--radius-md); cursor: pointer; text-align: center; transition: var(--transition); }
+    .type-option label .type-icon { font-size: 1.8rem; }
+    .type-option label .type-name { font-size: 0.85rem; font-weight: 600; color: var(--text-mid); }
+    .type-option label .type-desc { font-size: 0.75rem; color: var(--text-light); line-height: 1.4; }
+    .type-option input:checked + label { border-color: var(--primary-mid); background: var(--accent-pale); }
+    .type-option input:checked + label .type-name { color: var(--primary-mid); }
+    .type-option label:hover { border-color: var(--accent-light); }
 
-    /* Property detail card (enhanced) */
-    .prop-card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-      border: 1px solid var(--border);
-    }
-    .prop-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-    }
-    .prop-card-img {
-      position: relative;
-      height: 240px;
-      overflow: hidden;
-    }
-    .prop-card-img .img-bg {
-      width: 100%; height: 100%;
-      transition: transform 0.5s ease;
-    }
-    .prop-card:hover .img-bg { transform: scale(1.06); }
-    .prop-card-img .overlay-badges {
-      position: absolute;
-      top: 16px; left: 16px;
-      display: flex; gap: 6px;
-    }
-    .prop-card-img .rating-pill {
-      position: absolute;
-      top: 16px; right: 16px;
-      background: rgba(0,0,0,0.55);
-      color: var(--white);
-      padding: 5px 12px;
-      border-radius: 100px;
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-    .prop-card-body { padding: 22px; }
-    .prop-card-body h3 {
-      color: var(--primary);
-      font-size: 1.2rem;
-      margin-bottom: 6px;
-    }
-    .prop-meta {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-    .prop-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.82rem;
-      color: var(--text-light);
-    }
-    .prop-card-body p {
-      font-size: 0.9rem;
-      color: var(--text-mid);
-      line-height: 1.7;
-      margin-bottom: 18px;
-    }
-    .prop-amenities {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-    .amenity-tag {
-      background: var(--accent-pale);
-      color: var(--primary-light);
-      font-size: 0.75rem;
-      font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 6px;
-    }
-    .prop-card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-    .prop-price {
-      display: flex;
-      flex-direction: column;
-    }
-    .prop-price .amount {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      color: var(--primary);
-      font-weight: 700;
-      line-height: 1;
-    }
-    .prop-price .per { font-size: 0.78rem; color: var(--text-light); margin-top: 2px; }
+    /* Submit */
+    .form-submit-area { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .submit-btn { width: 100%; padding: 16px; background: var(--primary-mid); color: var(--white); border: none; border-radius: var(--radius-md); font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; font-family: 'Inter', sans-serif; }
+    .submit-btn:hover { background: var(--primary); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27,67,50,0.25); }
+    .submit-note { text-align: center; margin-top: 12px; font-size: 0.8rem; color: var(--text-light); }
 
-    /* No results */
-    .no-results {
-      display: none;
-      text-align: center;
-      padding: 80px 24px;
-      grid-column: 1/-1;
-    }
-    .no-results .icon { font-size: 3rem; margin-bottom: 16px; }
-    .no-results h3 { color: var(--primary); margin-bottom: 8px; }
-    .no-results p { color: var(--text-light); }
+    /* Success */
+    .success-msg { display: none; text-align: center; padding: 48px 24px; }
+    .success-msg .icon { font-size: 3.5rem; margin-bottom: 16px; }
+    .success-msg h3 { color: var(--primary); margin-bottom: 10px; }
+    .success-msg p  { color: var(--text-mid); margin-bottom: 24px; }
 
-    /* Location toggle */
-    .location-pills {
-      display: flex;
-      gap: 8px;
+    @media (max-width: 900px) {
+      .booking-layout { grid-template-columns: 1fr; }
+      .contact-sidebar { position: static; }
+      .booking-form-card { padding: 28px 24px; }
     }
-    .loc-pill {
-      padding: 7px 16px;
-      border-radius: 100px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      background: var(--sand);
-      color: var(--text-mid);
-      border: 1.5px solid var(--border);
-    }
-    .loc-pill.active { background: var(--accent-pale); color: var(--primary-mid); border-color: var(--accent); }
-
-    @media (max-width: 1024px) {
-      .props-grid-full { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 640px) {
-      .props-grid-full { grid-template-columns: 1fr; }
-      .filter-bar-inner { flex-direction: column; align-items: flex-start; }
+    @media (max-width: 560px) {
+      .form-grid-2 { grid-template-columns: 1fr; }
+      .type-selector { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ═══════════════ NAVBAR ═══════════════ -->
+  <!-- NAVBAR -->
   <nav class="navbar solid" id="navbar">
     <div class="navbar-inner">
       <a href="index.html" class="logo">
@@ -214,8 +79,8 @@
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="properties.html" class="active">Properties</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="properties.html">Properties</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
         <li><a href="contact.html" class="nav-cta">Book Now</a></li>
       </ul>
       <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -224,268 +89,238 @@
     </div>
     <div class="mobile-menu" id="mobileMenu">
       <a href="index.html">Home</a>
-      <a href="properties.html" class="active">Properties</a>
-      <a href="contact.html">Contact</a>
+      <a href="properties.html">Properties</a>
+      <a href="contact.html" class="active">Contact</a>
       <a href="contact.html" class="mobile-cta">📅 Book Now</a>
     </div>
   </nav>
 
-  <!-- ═══════════════ PAGE HERO ═══════════════ -->
+  <!-- PAGE HERO -->
   <div class="page-hero">
-    <h1>Our Properties</h1>
-    <p>Handpicked villas, hotels &amp; cottages across Alibag and Murud</p>
+    <h1>Book Your Stay</h1>
+    <p>Fill in the form below and our team will confirm your booking within a few hours</p>
     <div class="breadcrumb">
-      <a href="index.html">Home</a> <span>›</span> <span>Properties</span>
+      <a href="index.html">Home</a> <span>›</span> <span>Book Now</span>
     </div>
   </div>
 
-  <!-- ═══════════════ FILTER BAR ═══════════════ -->
-  <div class="filter-bar">
-    <div class="filter-bar-inner">
-      <div class="filter-tabs">
-        <button class="filter-tab active" data-type="all" onclick="filterProps('all', this)">
-          <span>🏘️</span> All Properties
-        </button>
-        <button class="filter-tab" data-type="villa" onclick="filterProps('villa', this)">
-          <span>🏖️</span> Villas
-        </button>
-        <button class="filter-tab" data-type="hotel" onclick="filterProps('hotel', this)">
-          <span>🏨</span> Hotels &amp; Resorts
-        </button>
-        <button class="filter-tab" data-type="cottage" onclick="filterProps('cottage', this)">
-          <span>🏕️</span> Cottages
-        </button>
-      </div>
-      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-        <div class="location-pills">
-          <div class="loc-pill active" onclick="filterLoc('all',this)">All Areas</div>
-          <div class="loc-pill" onclick="filterLoc('alibag',this)">📍 Alibag</div>
-          <div class="loc-pill" onclick="filterLoc('murud',this)">📍 Murud</div>
-        </div>
-        <div class="filter-count">Showing <strong id="count">6</strong> properties</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════ PROPERTIES GRID ═══════════════ -->
-  <section class="properties-section">
+  <!-- BOOKING SECTION -->
+  <section class="booking-section">
     <div class="container">
-      <div class="props-grid-full" id="propsGrid">
+      <div class="booking-layout">
 
-        <!-- ─── CARD 1: Hotel | Alibag ─── -->
-        <div class="prop-card" data-type="hotel" data-loc="alibag">
-          <div class="prop-card-img">
-            <div class="img-bg img-bg-hotel">
-              <div class="img-inner"><span class="img-icon">🏨</span></div>
-            </div>
-            <div class="overlay-badges"><span class="badge badge-hotel">Hotel</span></div>
-            <div class="rating-pill">★ 4.8</div>
-          </div>
-          <div class="prop-card-body">
-            <h3>Alibag Beach Resort</h3>
-            <div class="prop-meta">
-              <div class="prop-meta-item">📍 Alibag, Raigad</div>
-              <div class="prop-meta-item">🛏 20 Rooms</div>
-              <div class="prop-meta-item">👥 Up to 40 Guests</div>
-            </div>
-            <p>A luxurious beachfront resort with panoramic sea views, infinity pool, full-service spa and multi-cuisine restaurant. Ideal for weekend getaways and corporate retreats.</p>
-            <div class="prop-amenities">
-              <span class="amenity-tag">🏊 Pool</span>
-              <span class="amenity-tag">🧖 Spa</span>
-              <span class="amenity-tag">🍽 Restaurant</span>
-              <span class="amenity-tag">🅿️ Parking</span>
-              <span class="amenity-tag">📶 WiFi</span>
-            </div>
-            <div class="prop-card-footer">
-              <div class="prop-price">
-                <span class="amount">₹8,500</span>
-                <span class="per">per room / night</span>
+        <!-- SIDEBAR -->
+        <div class="contact-sidebar">
+          <div class="sidebar-card">
+            <h3>📞 Get in Touch</h3>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📞</div>
+              <div class="contact-detail-text">
+                <div class="label">Phone / WhatsApp</div>
+                <div class="value">+91 98XXX XXXXX</div>
               </div>
-              <a href="contact.html?property=alibag-beach-resort" class="btn btn-primary" style="padding:10px 20px;font-size:0.88rem;">Book Now →</a>
             </div>
-          </div>
-        </div>
-
-        <!-- ─── CARD 2: Villa | Alibag ─── -->
-        <div class="prop-card" data-type="villa" data-loc="alibag">
-          <div class="prop-card-img">
-            <div class="img-bg img-bg-villa">
-              <div class="img-inner"><span class="img-icon">🏖️</span></div>
-            </div>
-            <div class="overlay-badges"><span class="badge badge-villa">Villa</span></div>
-            <div class="rating-pill">★ 4.9</div>
-          </div>
-          <div class="prop-card-body">
-            <h3>Sunrise Sea Villa</h3>
-            <div class="prop-meta">
-              <div class="prop-meta-item">📍 Alibag, Raigad</div>
-              <div class="prop-meta-item">🛏 4 Bedrooms</div>
-              <div class="prop-meta-item">👥 Up to 10 Guests</div>
-            </div>
-            <p>An exclusive private villa with direct beach access, private plunge pool, outdoor deck, and breathtaking sunrise views. Chef and caretaker service available on request.</p>
-            <div class="prop-amenities">
-              <span class="amenity-tag">🏊 Private Pool</span>
-              <span class="amenity-tag">🍳 Kitchen</span>
-              <span class="amenity-tag">🏄 Beach Access</span>
-              <span class="amenity-tag">👨‍🍳 Chef on Request</span>
-            </div>
-            <div class="prop-card-footer">
-              <div class="prop-price">
-                <span class="amount">₹15,000</span>
-                <span class="per">per villa / night</span>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📧</div>
+              <div class="contact-detail-text">
+                <div class="label">Email</div>
+                <div class="value">hello@miravahospitality.com</div>
               </div>
-              <a href="contact.html?property=sunrise-sea-villa" class="btn btn-primary" style="padding:10px 20px;font-size:0.88rem;">Book Now →</a>
             </div>
-          </div>
-        </div>
-
-        <!-- ─── CARD 3: Cottage | Alibag ─── -->
-        <div class="prop-card" data-type="cottage" data-loc="alibag">
-          <div class="prop-card-img">
-            <div class="img-bg img-bg-cottage">
-              <div class="img-inner"><span class="img-icon">🏕️</span></div>
-            </div>
-            <div class="overlay-badges"><span class="badge badge-cottage">Cottage</span></div>
-            <div class="rating-pill">★ 4.7</div>
-          </div>
-          <div class="prop-card-body">
-            <h3>Palm Nest Cottage</h3>
-            <div class="prop-meta">
-              <div class="prop-meta-item">📍 Alibag, Raigad</div>
-              <div class="prop-meta-item">🛏 2 Bedrooms</div>
-              <div class="prop-meta-item">👥 Up to 6 Guests</div>
-            </div>
-            <p>A cosy cottage nestled among coconut palms just minutes from the beach. Perfect for families and couples seeking a tranquil, nature-immersive Konkan getaway.</p>
-            <div class="prop-amenities">
-              <span class="amenity-tag">🌴 Garden</span>
-              <span class="amenity-tag">🍳 Kitchen</span>
-              <span class="amenity-tag">🌊 Near Beach</span>
-              <span class="amenity-tag">🅿️ Parking</span>
-            </div>
-            <div class="prop-card-footer">
-              <div class="prop-price">
-                <span class="amount">₹4,500</span>
-                <span class="per">per cottage / night</span>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📍</div>
+              <div class="contact-detail-text">
+                <div class="label">Our Area</div>
+                <div class="value">Alibag &amp; Murud, Raigad District, Maharashtra</div>
               </div>
-              <a href="contact.html?property=palm-nest-cottage" class="btn btn-primary" style="padding:10px 20px;font-size:0.88rem;">Book Now →</a>
             </div>
-          </div>
-        </div>
-
-        <!-- ─── CARD 4: Hotel | Murud ─── -->
-        <div class="prop-card" data-type="hotel" data-loc="murud">
-          <div class="prop-card-img">
-            <div class="img-bg img-bg-hotel" style="background: linear-gradient(135deg, #1a3a2a 0%, #2a5a42 50%, #3a7a5a 100%);">
-              <div class="img-inner"><span class="img-icon">🏯</span></div>
-            </div>
-            <div class="overlay-badges"><span class="badge badge-hotel">Resort</span></div>
-            <div class="rating-pill">★ 4.6</div>
-          </div>
-          <div class="prop-card-body">
-            <h3>Murud Heritage Resort</h3>
-            <div class="prop-meta">
-              <div class="prop-meta-item">📍 Murud, Raigad</div>
-              <div class="prop-meta-item">🛏 15 Rooms</div>
-              <div class="prop-meta-item">👥 Up to 30 Guests</div>
-            </div>
-            <p>A heritage resort overlooking the famous Murud-Janjira fort with colonial architecture, manicured lawns and old-world hospitality. A living piece of Konkan history.</p>
-            <div class="prop-amenities">
-              <span class="amenity-tag">🏰 Fort View</span>
-              <span class="amenity-tag">🍽 Restaurant</span>
-              <span class="amenity-tag">🌿 Lawns</span>
-              <span class="amenity-tag">📶 WiFi</span>
-              <span class="amenity-tag">🅿️ Parking</span>
-            </div>
-            <div class="prop-card-footer">
-              <div class="prop-price">
-                <span class="amount">₹7,200</span>
-                <span class="per">per room / night</span>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">🕐</div>
+              <div class="contact-detail-text">
+                <div class="label">Response Time</div>
+                <div class="value">Within 2–4 hours (9am – 8pm)</div>
               </div>
-              <a href="contact.html?property=murud-heritage-resort" class="btn btn-primary" style="padding:10px 20px;font-size:0.88rem;">Book Now →</a>
             </div>
+            <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>🏡 Properties We Manage</h3>
+            <ul style="display:flex;flex-direction:column;gap:10px;">
+              <li style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-mid);">
+                <span class="badge badge-hotel" style="flex-shrink:0;">Hotel</span> Hill Resort — Alibag
+              </li>
+            </ul>
+            <p style="font-size:0.8rem;color:var(--text-light);margin-top:14px;">More properties coming soon!</p>
+          </div>
+
+          <div class="quick-tip">
+            <strong>💡 Booking Tip</strong>
+            Weekends and long weekends fill up fast! Book at least 2 weeks in advance for the best availability.
           </div>
         </div>
 
-        <!-- ─── CARD 5: Villa | Murud ─── -->
-        <div class="prop-card" data-type="villa" data-loc="murud">
-          <div class="prop-card-img">
-            <div class="img-bg img-bg-villa" style="background: linear-gradient(135deg, #0a1c30 0%, #123d5a 50%, #1e6084 100%);">
-              <div class="img-inner"><span class="img-icon">🌅</span></div>
+        <!-- BOOKING FORM -->
+        <div class="booking-form-card">
+
+          <div id="formView">
+            <div class="form-header">
+              <div class="section-label">Inquiry Form</div>
+              <h2>Plan Your Coastal Escape</h2>
+              <p>All fields marked with <span style="color:#e05a5a;">*</span> are required. We'll call or email you to confirm.</p>
             </div>
-            <div class="overlay-badges"><span class="badge badge-villa">Villa</span></div>
-            <div class="rating-pill">★ 4.8</div>
-          </div>
-          <div class="prop-card-body">
-            <h3>The Coastal Villa, Murud</h3>
-            <div class="prop-meta">
-              <div class="prop-meta-item">📍 Murud, Raigad</div>
-              <div class="prop-meta-item">🛏 5 Bedrooms</div>
-              <div class="prop-meta-item">👥 Up to 14 Guests</div>
-            </div>
-            <p>A sprawling seaside villa with unobstructed views of the Arabian Sea, private rooftop terrace, home theatre and resident chef. Ideal for large families and celebrations.</p>
-            <div class="prop-amenities">
-              <span class="amenity-tag">🌊 Sea View</span>
-              <span class="amenity-tag">🎬 Home Theatre</span>
-              <span class="amenity-tag">👨‍🍳 Chef</span>
-              <span class="amenity-tag">🏖 Beach</span>
-              <span class="amenity-tag">🚗 Driver</span>
-            </div>
-            <div class="prop-card-footer">
-              <div class="prop-price">
-                <span class="amount">₹18,000</span>
-                <span class="per">per villa / night</span>
+
+            <form id="bookingForm" onsubmit="submitForm(event)" novalidate>
+
+              <!-- Personal Details -->
+              <div class="form-section-title">👤 Your Details</div>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label>Full Name <span class="req">*</span></label>
+                  <input type="text" id="fname" placeholder="e.g. Rahul Sharma" required />
+                </div>
+                <div class="form-group">
+                  <label>Mobile Number <span class="req">*</span></label>
+                  <input type="tel" id="fmobile" placeholder="+91 98XXX XXXXX" required />
+                </div>
               </div>
-              <a href="contact.html?property=coastal-villa-murud" class="btn btn-primary" style="padding:10px 20px;font-size:0.88rem;">Book Now →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- ─── CARD 6: Cottage | Murud ─── -->
-        <div class="prop-card" data-type="cottage" data-loc="murud">
-          <div class="prop-card-img">
-            <div class="img-bg img-bg-cottage" style="background: linear-gradient(135deg, #2c1a08 0%, #5a3815 50%, #8a5c28 100%);">
-              <div class="img-inner"><span class="img-icon">🌳</span></div>
-            </div>
-            <div class="overlay-badges"><span class="badge badge-cottage">Cottage</span></div>
-            <div class="rating-pill">★ 4.5</div>
-          </div>
-          <div class="prop-card-body">
-            <h3>Green Canopy Cottage</h3>
-            <div class="prop-meta">
-              <div class="prop-meta-item">📍 Murud, Raigad</div>
-              <div class="prop-meta-item">🛏 2 Bedrooms</div>
-              <div class="prop-meta-item">👥 Up to 5 Guests</div>
-            </div>
-            <p>An eco-friendly cottage tucked inside mango and coconut orchards on the outskirts of Murud. For those who want to truly unplug — birdwatching, stargazing, nature walks.</p>
-            <div class="prop-amenities">
-              <span class="amenity-tag">🌿 Eco-Friendly</span>
-              <span class="amenity-tag">🥭 Orchard</span>
-              <span class="amenity-tag">🔥 Bonfire Area</span>
-              <span class="amenity-tag">🦜 Birdwatching</span>
-            </div>
-            <div class="prop-card-footer">
-              <div class="prop-price">
-                <span class="amount">₹3,800</span>
-                <span class="per">per cottage / night</span>
+              <div class="form-group" style="margin-top:20px;">
+                <label>Email Address <span class="req">*</span></label>
+                <input type="email" id="femail" placeholder="you@example.com" required />
               </div>
-              <a href="contact.html?property=green-canopy-cottage" class="btn btn-primary" style="padding:10px 20px;font-size:0.88rem;">Book Now →</a>
-            </div>
+
+              <!-- Stay Details -->
+              <div class="form-section-title">📅 Stay Details</div>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label>Check-In Date <span class="req">*</span></label>
+                  <input type="date" id="fcheckin" required />
+                </div>
+                <div class="form-group">
+                  <label>Check-Out Date <span class="req">*</span></label>
+                  <input type="date" id="fcheckout" required />
+                </div>
+              </div>
+              <div class="form-grid-2" style="margin-top:20px;">
+                <div class="form-group">
+                  <label>Number of Guests <span class="req">*</span></label>
+                  <select id="fguests" required>
+                    <option value="">Select guests</option>
+                    <option>1 Guest</option>
+                    <option>2 Guests</option>
+                    <option>3 Guests</option>
+                    <option>4 Guests</option>
+                    <option>5 Guests</option>
+                    <option>6 Guests</option>
+                    <option>7 Guests</option>
+                    <option>8 Guests</option>
+                    <option>9–12 Guests</option>
+                    <option>13+ Guests</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Number of Rooms / Units <span class="req">*</span></label>
+                  <select id="frooms" required>
+                    <option value="">Select rooms</option>
+                    <option>1 Room</option>
+                    <option>2 Rooms</option>
+                    <option>3 Rooms</option>
+                    <option>4 Rooms</option>
+                    <option>5 Rooms</option>
+                    <option>Entire Villa / Cottage</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Property Type -->
+              <div class="form-section-title">🏡 Property Type</div>
+              <div class="type-selector" id="typeSelector">
+                <div class="type-option">
+                  <input type="radio" name="proptype" id="type-villa" value="Villa" />
+                  <label for="type-villa" onclick="filterByType('villa')">
+                    <span class="type-icon">🏖️</span>
+                    <span class="type-name">Villa</span>
+                    <span class="type-desc">Private villa with exclusive amenities</span>
+                  </label>
+                </div>
+                <div class="type-option">
+                  <input type="radio" name="proptype" id="type-hotel" value="Hotel / Resort" />
+                  <label for="type-hotel" onclick="filterByType('hotel')">
+                    <span class="type-icon">🏨</span>
+                    <span class="type-name">Hotel / Resort</span>
+                    <span class="type-desc">Full-service hotel or resort stay</span>
+                  </label>
+                </div>
+                <div class="type-option">
+                  <input type="radio" name="proptype" id="type-cottage" value="Cottage" />
+                  <label for="type-cottage" onclick="filterByType('cottage')">
+                    <span class="type-icon">🏕️</span>
+                    <span class="type-name">Cottage</span>
+                    <span class="type-desc">Cosy, nature-immersive cottage stay</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Property Selection -->
+              <div class="form-section-title">🏘️ Select Property</div>
+              <div class="form-group">
+                <label>Choose a Property <span class="req">*</span></label>
+                <select id="fproperty" required onchange="onPropertyChange()">
+                  <option value="">— Select a property —</option>
+                  <optgroup label="🏨 Hotels &amp; Resorts" id="grp-hotel">
+                    <option value="Hill Resort">Hill Resort — Alibag</option>
+                  </optgroup>
+                  <optgroup label="🏖️ Villas" id="grp-villa">
+                  </optgroup>
+                  <optgroup label="🏕️ Cottages" id="grp-cottage">
+                  </optgroup>
+                </select>
+                <span style="font-size:0.8rem;color:var(--text-light);margin-top:4px;">
+                  More properties coming soon — select Hill Resort to proceed
+                </span>
+              </div>
+
+              <!-- Additional Info -->
+              <div class="form-section-title">✉️ Additional Information</div>
+              <div class="form-group">
+                <label>Special Requests or Questions</label>
+                <textarea id="fmessage" rows="4" placeholder="Any special requirements, questions about the property, dietary needs, celebration arrangements, etc."></textarea>
+              </div>
+              <div class="form-group" style="margin-top:16px;">
+                <label>How did you hear about us?</label>
+                <select id="fsource">
+                  <option value="">Select an option</option>
+                  <option>Google Search</option>
+                  <option>Instagram / Facebook</option>
+                  <option>Friend / Family Referral</option>
+                  <option>MakeMyTrip / Booking.com</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <!-- Submit -->
+              <div class="form-submit-area">
+                <button type="submit" class="submit-btn">📩 Submit Booking Inquiry</button>
+                <p class="submit-note">🔒 Your information is safe with us. We'll respond within 2–4 hours.</p>
+              </div>
+            </form>
           </div>
-        </div>
 
-        <!-- No Results Message -->
-        <div class="no-results" id="noResults">
-          <div class="icon">🔍</div>
-          <h3>No properties found</h3>
-          <p>Try a different category or location filter.</p>
-          <button class="btn btn-outline" style="margin-top:16px;" onclick="filterProps('all', document.querySelector('[data-type=all]'))">Clear Filters</button>
-        </div>
+          <!-- Success -->
+          <div class="success-msg" id="successView">
+            <div class="icon">🎉</div>
+            <h3>Booking Inquiry Received!</h3>
+            <p>Thank you, <strong id="guestName"></strong>! We've received your inquiry and our team will call or email you within 2–4 hours to confirm availability and finalise your booking.</p>
+            <a href="properties.html" class="btn btn-outline" style="margin-right:12px;">Browse More Properties</a>
+            <a href="index.html" class="btn btn-primary">Back to Home</a>
+          </div>
 
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
@@ -526,70 +361,74 @@
   </footer>
 
   <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
-    let activeType = 'all';
-    let activeLoc  = 'all';
-
-    function filterProps(type, el) {
-      activeType = type;
-      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-      el.classList.add('active');
-      applyFilters();
-    }
-
-    function filterLoc(loc, el) {
-      activeLoc = loc;
-      document.querySelectorAll('.loc-pill').forEach(p => p.classList.remove('active'));
-      el.classList.add('active');
-      applyFilters();
-    }
-
-    function applyFilters() {
-      const cards = document.querySelectorAll('.prop-card');
-      let count = 0;
-      cards.forEach(card => {
-        const matchType = activeType === 'all' || card.dataset.type === activeType;
-        const matchLoc  = activeLoc  === 'all' || card.dataset.loc  === activeLoc;
-        if (matchType && matchLoc) {
-          card.style.display = '';
-          count++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-      document.getElementById('count').textContent = count;
-      document.getElementById('noResults').style.display = count === 0 ? 'block' : 'none';
-    }
-
-    // Check URL params for pre-filtering
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('type')) {
-      const btn = document.querySelector(`[data-type="${params.get('type')}"]`);
-      if (btn) filterProps(params.get('type'), btn);
-    }
-
-    // Animate cards on load
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }, i * 80);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.prop-card').forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(24px)';
-      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease, border-color 0.3s ease';
-      observer.observe(card);
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('fcheckin').min  = today;
+    document.getElementById('fcheckout').min = today;
+    document.getElementById('fcheckin').addEventListener('change', function() {
+      document.getElementById('fcheckout').min = this.value;
+      if (document.getElementById('fcheckout').value && document.getElementById('fcheckout').value <= this.value) {
+        document.getElementById('fcheckout').value = '';
+      }
     });
+
+    function filterByType(type) {
+      const sel = document.getElementById('fproperty');
+      sel.value = '';
+      const hotelGrp   = document.getElementById('grp-hotel');
+      const villaGrp   = document.getElementById('grp-villa');
+      const cottageGrp = document.getElementById('grp-cottage');
+      [hotelGrp, villaGrp, cottageGrp].forEach(g => g.style.display = '');
+      if (type === 'hotel')   { villaGrp.style.display = 'none'; cottageGrp.style.display = 'none'; }
+      else if (type === 'villa')   { hotelGrp.style.display = 'none'; cottageGrp.style.display = 'none'; }
+      else if (type === 'cottage') { hotelGrp.style.display = 'none'; villaGrp.style.display = 'none'; }
+    }
+
+    function onPropertyChange() {
+      const val = document.getElementById('fproperty').value;
+      if (!val) return;
+      const hotels = ['Hill Resort'];
+      if (hotels.includes(val)) document.getElementById('type-hotel').checked = true;
+    }
+
+    // Pre-select from URL param
+    const params = new URLSearchParams(window.location.search);
+    const propParam = params.get('property');
+    if (propParam) {
+      const map = { 'hill-resort': 'Hill Resort' };
+      const propName = map[propParam];
+      if (propName) { document.getElementById('fproperty').value = propName; onPropertyChange(); }
+    }
+
+    function submitForm(e) {
+      e.preventDefault();
+      const required = ['fname','fmobile','femail','fcheckin','fcheckout','fguests','frooms','fproperty'];
+      let valid = true;
+      required.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) {
+          el.style.borderColor = '#e05a5a';
+          el.style.boxShadow   = '0 0 0 3px rgba(224,90,90,0.12)';
+          valid = false;
+          el.addEventListener('input', () => { el.style.borderColor = ''; el.style.boxShadow = ''; }, { once: true });
+        }
+      });
+      if (!document.querySelector('input[name="proptype"]:checked')) {
+        document.getElementById('typeSelector').style.outline = '2px solid #e05a5a';
+        valid = false;
+      }
+      if (!valid) {
+        const firstError = document.querySelector('input[style*="e05a5a"], select[style*="e05a5a"]');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      const name = document.getElementById('fname').value.split(' ')[0];
+      document.getElementById('guestName').textContent = name;
+      document.getElementById('formView').style.display = 'none';
+      document.getElementById('successView').style.display = 'block';
+      window.scrollTo({ top: document.querySelector('.booking-form-card').offsetTop - 100, behavior: 'smooth' });
+    }
   </script>
 </body>
 </html>
