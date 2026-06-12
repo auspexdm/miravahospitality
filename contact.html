@@ -117,14 +117,14 @@
               <div class="contact-detail-icon">📞</div>
               <div class="contact-detail-text">
                 <div class="label">Phone / WhatsApp</div>
-                <div class="value">+91 7447466111</div>
+                <div class="value">+91 98XXX XXXXX</div>
               </div>
             </div>
             <div class="contact-detail">
               <div class="contact-detail-icon">📧</div>
               <div class="contact-detail-text">
                 <div class="label">Email</div>
-                <div class="value">miravahospitality@gmail.com</div>
+                <div class="value">hello@miravahospitality.com</div>
               </div>
             </div>
             <div class="contact-detail">
@@ -141,7 +141,7 @@
                 <div class="value">Within 2–4 hours (9am – 8pm)</div>
               </div>
             </div>
-            <a href="https://wa.me/917447466111" class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
+            <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
           </div>
 
           <div class="sidebar-card">
@@ -149,6 +149,21 @@
             <ul style="display:flex;flex-direction:column;gap:10px;">
               <li style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-mid);">
                 <span class="badge badge-hotel" style="flex-shrink:0;">Hotel</span> Hill Resort — Alibag
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-mid);">
+                <span class="badge badge-villa" style="flex-shrink:0;">Villa</span> Terra — 5 BHK
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-mid);">
+                <span class="badge badge-villa" style="flex-shrink:0;">Villa</span> Aangan — 5 BHK
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-mid);">
+                <span class="badge badge-villa" style="flex-shrink:0;">Villa</span> Ocean Pearl — 4 BHK
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-mid);">
+                <span class="badge badge-villa" style="flex-shrink:0;">Villa</span> Ocean Pearl — 2-2 BHK
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-mid);">
+                <span class="badge badge-villa" style="flex-shrink:0;">Villa</span> Casa Azul — 3 BHK
               </li>
             </ul>
             <p style="font-size:0.8rem;color:var(--text-light);margin-top:14px;">More properties coming soon!</p>
@@ -271,12 +286,17 @@
                     <option value="Hill Resort">Hill Resort — Alibag</option>
                   </optgroup>
                   <optgroup label="🏖️ Villas" id="grp-villa">
+                    <option value="Terra - 5 BHK">Terra — 5 BHK Villa</option>
+                    <option value="Aangan - 5 BHK">Aangan — 5 BHK Villa</option>
+                    <option value="Ocean Pearl - 4 BHK">Ocean Pearl — 4 BHK Villa</option>
+                    <option value="Ocean Pearl - 2-2 BHK">Ocean Pearl — 2-2 BHK Villa</option>
+                    <option value="Casa Azul - 3 BHK">Casa Azul — 3 BHK Villa</option>
                   </optgroup>
                   <optgroup label="🏕️ Cottages" id="grp-cottage">
                   </optgroup>
                 </select>
                 <span style="font-size:0.8rem;color:var(--text-light);margin-top:4px;">
-                  More properties coming soon — select Hill Resort to proceed
+                  More properties coming soon!
                 </span>
               </div>
 
@@ -389,14 +409,23 @@
       const val = document.getElementById('fproperty').value;
       if (!val) return;
       const hotels = ['Hill Resort'];
+      const villas = ['Terra - 5 BHK', 'Aangan - 5 BHK', 'Ocean Pearl - 4 BHK', 'Ocean Pearl - 2-2 BHK', 'Casa Azul - 3 BHK'];
       if (hotels.includes(val)) document.getElementById('type-hotel').checked = true;
+      else if (villas.includes(val)) document.getElementById('type-villa').checked = true;
     }
 
     // Pre-select from URL param
     const params = new URLSearchParams(window.location.search);
     const propParam = params.get('property');
     if (propParam) {
-      const map = { 'hill-resort': 'Hill Resort' };
+      const map = {
+        'hill-resort': 'Hill Resort',
+        'terra': 'Terra - 5 BHK',
+        'aangan': 'Aangan - 5 BHK',
+        'ocean-pearl-4bhk': 'Ocean Pearl - 4 BHK',
+        'ocean-pearl-2bhk': 'Ocean Pearl - 2-2 BHK',
+        'casa-azul': 'Casa Azul - 3 BHK'
+      };
       const propName = map[propParam];
       if (propName) { document.getElementById('fproperty').value = propName; onPropertyChange(); }
     }
