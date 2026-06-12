@@ -10,7 +10,7 @@
     /* Hero */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(160deg, #0D2B1F 0%, #1B4332 35%, #2D6A4F 65%, #3A8C68 100%);
+      background: linear-gradient(160deg, #1A2342 0%, #2F4172 35%, #4C63AC 65%, #6E86C9 100%);
       display: flex;
       align-items: center;
       position: relative;
@@ -20,17 +20,17 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(82,183,136,0.18) 0%, transparent 60%);
+      background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(237,228,171,0.14) 0%, transparent 60%);
     }
     .hero-deco {
       position: absolute; right: -60px; top: 50%;
       transform: translateY(-50%);
       width: 600px; height: 600px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(82,183,136,0.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(237,228,171,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
-    .hero-leaves { position: absolute; font-size: 8rem; opacity: 0.06; pointer-events: none; }
+    .hero-leaves { position: absolute; font-size: 8rem; opacity: 0.07; pointer-events: none; }
     .hero-leaves.l1 { top: 10%; right: 8%; transform: rotate(-20deg); }
     .hero-leaves.l2 { bottom: 12%; right: 22%; transform: rotate(15deg); font-size: 5rem; }
     .hero-leaves.l3 { top: 30%; right: 42%; transform: rotate(-10deg); font-size: 4rem; }
@@ -42,17 +42,17 @@
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(82,183,136,0.18);
-      border: 1px solid rgba(149,213,178,0.3);
-      color: var(--accent-light);
+      background: rgba(237,228,171,0.16);
+      border: 1px solid rgba(237,228,171,0.35);
+      color: var(--gold-light);
       padding: 7px 18px; border-radius: 100px;
       font-size: 0.82rem; font-weight: 600;
       letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 26px;
     }
-    .hero-eyebrow span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+    .hero-eyebrow span { width: 6px; height: 6px; background: var(--gold-light); border-radius: 50%; }
     .hero h1 { color: var(--white); max-width: 700px; margin-bottom: 24px; }
-    .hero h1 em { font-style: italic; color: var(--accent-light); }
-    .hero-sub { color: rgba(255,255,255,0.75); font-size: 1.12rem; max-width: 520px; line-height: 1.75; margin-bottom: 40px; }
+    .hero h1 em { font-style: italic; color: var(--gold-light); }
+    .hero-sub { color: rgba(255,255,255,0.78); font-size: 1.12rem; max-width: 520px; line-height: 1.75; margin-bottom: 40px; }
     .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
     /* Quick Search Strip */
@@ -60,7 +60,7 @@
     .hero-strip-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr) auto; gap: 16px; align-items: end; }
     .strip-field label { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; }
     .strip-field input, .strip-field select { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-dark); outline: none; transition: var(--transition); appearance: none; background: var(--sand); }
-    .strip-field input:focus, .strip-field select:focus { border-color: var(--accent); background: var(--white); box-shadow: 0 0 0 3px rgba(82,183,136,0.12); }
+    .strip-field input:focus, .strip-field select:focus { border-color: var(--accent); background: var(--white); box-shadow: 0 0 0 3px rgba(126,150,214,0.16); }
     .strip-search { background: var(--primary-mid); color: var(--white); border: none; padding: 12px 28px; border-radius: var(--radius-sm); font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: var(--transition); white-space: nowrap; display: flex; align-items: center; gap: 8px; }
     .strip-search:hover { background: var(--primary); transform: translateY(-1px); }
 
@@ -98,8 +98,8 @@
 
     /* CTA */
     .cta-section { background: linear-gradient(135deg, var(--primary-mid) 0%, var(--primary) 100%); padding: 90px 24px; text-align: center; position: relative; overflow: hidden; }
-    .cta-section::before { content: '🌴'; position: absolute; font-size: 12rem; opacity: 0.06; top: -20px; left: -20px; pointer-events: none; }
-    .cta-section::after  { content: '🌊'; position: absolute; font-size: 10rem; opacity: 0.06; bottom: -20px; right: -20px; pointer-events: none; }
+    .cta-section::before { content: '🌅'; position: absolute; font-size: 12rem; opacity: 0.07; top: -20px; left: -20px; pointer-events: none; }
+    .cta-section::after  { content: '🌊'; position: absolute; font-size: 10rem; opacity: 0.07; bottom: -20px; right: -20px; pointer-events: none; }
     .cta-section h2 { color: var(--white); margin-bottom: 16px; }
     .cta-section p  { color: rgba(255,255,255,0.78); font-size: 1.08rem; max-width: 500px; margin: 0 auto 36px; }
     .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
@@ -129,8 +129,7 @@
   <nav class="navbar transparent" id="navbar">
     <div class="navbar-inner">
       <a href="index.html" class="logo">
-        <div class="logo-icon">🌿</div>
-        <span>Mirava<br><small style="font-size:0.55em;font-weight:400;opacity:0.8">HOSPITALITY</small></span>
+        <img src="logo-white.png" alt="Mirava Hospitality" class="logo-img" id="navLogo" />
       </a>
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
@@ -153,9 +152,9 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-deco"></div>
-    <div class="hero-leaves l1">🌴</div>
-    <div class="hero-leaves l2">🍃</div>
-    <div class="hero-leaves l3">🌿</div>
+    <div class="hero-leaves l1">🌅</div>
+    <div class="hero-leaves l2">🌊</div>
+    <div class="hero-leaves l3">🌴</div>
     <div class="hero-content">
       <div class="hero-eyebrow"><span></span> Alibag &amp; Murud Coastal Retreats</div>
       <h1>Your Perfect <em>Coastal Escape</em> Awaits You</h1>
@@ -204,7 +203,7 @@
   <div class="stats">
     <div class="stats-inner">
       <div class="stat-item">
-        <div class="stat-num">1</div>
+        <div class="stat-num">6</div>
         <div class="stat-label">Curated Properties</div>
       </div>
       <div class="stat-item">
@@ -260,12 +259,52 @@
     <div class="container">
       <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:20px; margin-bottom:0;">
         <div>
-          <div class="section-label">Featured Stay</div>
-          <h2 class="section-title" style="margin-bottom:0;">Our Property</h2>
+          <div class="section-label">Featured Stays</div>
+          <h2 class="section-title" style="margin-bottom:0;">Our Properties</h2>
         </div>
         <a href="properties.html" class="btn btn-outline">View All Properties →</a>
       </div>
       <div class="props-grid">
+
+        <!-- Terra -->
+        <div class="property-card">
+          <div class="property-card-img">
+            <div class="img-bg img-bg-villa">
+              <div class="img-inner"><span class="img-icon">🏖️</span></div>
+            </div>
+            <div class="badge-overlay"><span class="badge badge-villa">Villa · 5 BHK</span></div>
+            <div class="rating-overlay">★ New</div>
+          </div>
+          <div class="property-card-body">
+            <h3>Terra</h3>
+            <div class="location">📍 Alibag, Raigad</div>
+            <p>An expansive 5-bedroom private villa built for big family getaways and group celebrations, with a private pool and lush lawns.</p>
+            <div class="property-card-footer">
+              <div class="price">₹35,000 <span>starting / night</span></div>
+              <a href="contact.html?property=terra" class="btn btn-primary" style="padding:9px 18px; font-size:0.85rem;">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Casa Azul -->
+        <div class="property-card">
+          <div class="property-card-img">
+            <div class="img-bg img-bg-villa">
+              <div class="img-inner"><span class="img-icon">💙</span></div>
+            </div>
+            <div class="badge-overlay"><span class="badge badge-villa">Villa · 3 BHK</span></div>
+            <div class="rating-overlay">★ New</div>
+          </div>
+          <div class="property-card-body">
+            <h3>Casa Azul</h3>
+            <div class="location">📍 Alibag, Raigad</div>
+            <p>A charming Mediterranean-inspired 3-bedroom villa in soothing blues and whites, with a private pool and alfresco dining deck.</p>
+            <div class="property-card-footer">
+              <div class="price">₹22,000 <span>starting / night</span></div>
+              <a href="contact.html?property=casa-azul" class="btn btn-primary" style="padding:9px 18px; font-size:0.85rem;">Book Now</a>
+            </div>
+          </div>
+        </div>
 
         <!-- Hill Resort -->
         <div class="property-card">
@@ -315,7 +354,7 @@
           <div class="testi-stars">★★★★★</div>
           <p class="testi-text">"Our group had a fantastic time in Alibag. The team helped us find exactly what we needed within budget. Seamless booking experience!"</p>
           <div class="testi-author">
-            <div class="testi-avatar" style="background: #FFF3CD;">👨</div>
+            <div class="testi-avatar" style="background: #F3ECC5;">👨</div>
             <div>
               <div class="testi-name">Rahul Mehta</div>
               <div class="testi-loc">Pune</div>
@@ -354,8 +393,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo">
-          <div class="logo-icon">🌿</div>
-          <span>Mirava<br><small style="font-size:0.55em;font-weight:400;opacity:0.7">HOSPITALITY</small></span>
+          <img src="logo-white.png" alt="Mirava Hospitality" class="logo-img logo-img-footer" />
         </div>
         <p style="margin-top:16px;">Curating the finest coastal stays in Alibag and Murud — on revenue partnership with the best local properties.</p>
       </div>
@@ -386,15 +424,21 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 Mirava Hospitality. All rights reserved.</span>
-      <span>Made with 🌿 for the Konkan coast</span>
+      <span>Made with 🌅 for the Konkan coast</span>
     </div>
   </footer>
 
   <script>
     const navbar = document.getElementById('navbar');
+    const navLogo = document.getElementById('navLogo');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 80) { navbar.classList.remove('transparent'); navbar.classList.add('scrolled'); }
-      else { navbar.classList.remove('scrolled'); navbar.classList.add('transparent'); }
+      if (window.scrollY > 80) {
+        navbar.classList.remove('transparent'); navbar.classList.add('scrolled');
+        navLogo.src = 'logo.png';
+      } else {
+        navbar.classList.remove('scrolled'); navbar.classList.add('transparent');
+        navLogo.src = 'logo-white.png';
+      }
     });
     function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
     const today = new Date().toISOString().split('T')[0];
