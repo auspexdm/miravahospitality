@@ -185,6 +185,10 @@
             </div>
 
             <form id="bookingForm" onsubmit="submitForm(event)" novalidate>
+              <input type="hidden" name="access_key" value="0123d47a-b207-468d-bb76-3120b3490b09" />
+              <input type="hidden" name="subject" value="New Booking Inquiry - Mirava Hospitality" />
+              <input type="hidden" name="from_name" value="Mirava Hospitality Website" />
+              <input type="checkbox" name="botcheck" style="display:none;" />
 
               <!-- Personal Details -->
               <div class="form-section-title">👤 Your Details</div>
@@ -450,11 +454,50 @@
         if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
-      const name = document.getElementById('fname').value.split(' ')[0];
-      document.getElementById('guestName').textContent = name;
-      document.getElementById('formView').style.display = 'none';
-      document.getElementById('successView').style.display = 'block';
-      window.scrollTo({ top: document.querySelector('.booking-form-card').offsetTop - 100, behavior: 'smooth' });
+
+      const form = document.getElementById('bookingForm');
+      const submitBtn = form.querySelector('.submit-btn');
+      const originalBtnText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '⏳ Sending...';
+      submitBtn.disabled = true;
+
+      const formData = new FormData(form);
+      formData.append('Full Name', document.getElementById('fname').value);
+      formData.append('Mobile Number', document.getElementById('fmobile').value);
+      formData.append('Email Address', document.getElementById('femail').value);
+      formData.append('Check-In Date', document.getElementById('fcheckin').value);
+      formData.append('Check-Out Date', document.getElementById('fcheckout').value);
+      formData.append('Number of Guests', document.getElementById('fguests').value);
+      formData.append('Number of Rooms / Units', document.getElementById('frooms').value);
+      formData.append('Property Type', document.querySelector('input[name="proptype"]:checked').value);
+      formData.append('Property', document.getElementById('fproperty').value);
+      formData.append('Special Requests', document.getElementById('fmessage').value);
+      formData.append('How they heard about us', document.getElementById('fsource').value);
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          const name = document.getElementById('fname').value.split(' ')[0];
+          document.getElementById('guestName').textContent = name;
+          document.getElementById('formView').style.display = 'none';
+          document.getElementById('successView').style.display = 'block';
+          window.scrollTo({ top: document.querySelector('.booking-form-card').offsetTop - 100, behavior: 'smooth' });
+        } else {
+          alert('Something went wrong sending your inquiry. Please try again or contact us directly on WhatsApp.');
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+        }
+      })
+      .catch(() => {
+        alert('Something went wrong sending your inquiry. Please try again or contact us directly on WhatsApp.');
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+      });
     }
   </script>
 </body>
