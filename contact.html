@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book Your Stay — Mirava Hospitality</title>
   <meta name="description" content="Book your perfect coastal stay in Alibag or Murud. Fill in your details and our team will confirm your booking promptly." />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="stylesheet" href="style.css" />
   <style>
     .booking-section { background: var(--sand); padding: 64px 0 90px; }
@@ -35,6 +38,473 @@
     .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
     /* Type selector */
+    .type-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .type-option input[type="radio"] { display: none; }
+    .type-option label { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 18px 12px; border: 2px solid var(--border); border-radius: var(--radius-md); cursor: pointer; text-align: center; transition: var(--transition); }
+    .type-option label .type-icon { font-size: 1.8rem; }
+    .type-option label .type-name { font-size: 0.85rem; font-weight: 600; color: var(--text-mid); }
+    .type-option label .type-desc { font-size: 0.75rem; color: var(--text-light); line-height: 1.4; }
+    .type-option input:checked + label { border-color: var(--primary-mid); background: var(--accent-pale); }
+    .type-option input:checked + label .type-name { color: var(--primary-mid); }
+    .type-option label:hover { border-color: var(--accent-light); }
+
+    /* Submit */
+    .form-submit-area { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .submit-btn { width: 100%; padding: 16px; background: var(--primary-mid); color: var(--white); border: none; border-radius: var(--radius-md); font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; font-family: 'Inter', sans-serif; }
+    .submit-btn:hover { background: var(--primary); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(47,65,114,0.28); }
+    .submit-note { text-align: center; margin-top: 12px; font-size: 0.8rem; color: var(--text-light); }
+
+    /* Success */
+    .success-msg { display: none; text-align: center; padding: 48px 24px; }
+    .success-msg .icon { font-size: 3.5rem; margin-bottom: 16px; }
+    .success-msg h3 { color: var(--primary); margin-bottom: 10px; }
+    .success-msg p  { color: var(--text-mid); margin-bottom: 24px; }
+
+    @media (max-width: 900px) {
+      .booking-layout { grid-template-columns: 1fr; }
+      .contact-sidebar { position: static; }
+      .booking-form-card { padding: 28px 24px; }
+    }
+    @media (max-width: 560px) {
+      .form-grid-2 { grid-template-columns: 1fr; }
+      .type-selector { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar solid" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">
+        <img src="logo-icon-blue.png" alt="Mirava Hospitality" class="logo-img logo-icon-nav" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="properties.html">Properties</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="contact.html" class="nav-cta">Book Now</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="properties.html">Properties</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="contact.html" class="mobile-cta">📅 Book Now</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <h1>Book Your Stay</h1>
+    <p>Fill in the form below and our team will confirm your booking within a few hours</p>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <span>›</span> <span>Book Now</span>
+    </div>
+  </div>
+
+  <!-- BOOKING SECTION -->
+  <section class="booking-section">
+    <div class="container">
+      <div class="booking-layout">
+
+        <!-- SIDEBAR -->
+        <div class="contact-sidebar">
+          <div class="sidebar-card">
+            <h3>📞 Get in Touch</h3>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📞</div>
+              <div class="contact-detail-text">
+                <div class="label">Phone / WhatsApp</div>
+                <div class="value">+91 74474 66111</div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📧</div>
+              <div class="contact-detail-text">
+                <div class="label">Email</div>
+                <div class="value">miravahospitality@gmail.com</div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📍</div>
+              <div class="contact-detail-text">
+                <div class="label">Our Area</div>
+                <div class="value">Alibag &amp; Murud, Raigad District, Maharashtra</div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">🕐</div>
+              <div class="contact-detail-text">
+                <div class="label">Response Time</div>
+                <div class="value">Within 2–4 hours (9am – 8pm)</div>
+              </div>
+            </div>
+            <a href="https://wa.me/917447466111" class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>🏡 Properties We Manage</h3>
+            <ul style="display:flex;flex-direction:column;gap:10px;">
+              <li style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-mid);">
+                <span class="badge badge-hotel" style="flex-shrink:0;">Hotel</span> Hill Resort — Alibag
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-mid);">
+                <span class="badge badge-villa" style="flex-shrink:0;">Villa</span> Terra — 5 BHK
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-mid);">
+                <span class="badge badge-villa" style="flex-shrink:0;">Villa</span> Aangan — 5 BHK
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-mid);">
+                <span class="badge badge-villa" style="flex-shrink:0;">Villa</span> Ocean Pearl — 4 BHK
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-mid);">
+                <span class="badge badge-villa" style="flex-shrink:0;">Villa</span> Ocean Pearl — 2-2 BHK
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-mid);">
+                <span class="badge badge-villa" style="flex-shrink:0;">Villa</span> Casa Azul — 3 BHK
+              </li>
+            </ul>
+            <p style="font-size:0.8rem;color:var(--text-light);margin-top:14px;">More properties coming soon!</p>
+          </div>
+
+          <div class="quick-tip">
+            <strong>💡 Booking Tip</strong>
+            Weekends and long weekends fill up fast! Book at least 2 weeks in advance for the best availability.
+          </div>
+        </div>
+
+        <!-- BOOKING FORM -->
+        <div class="booking-form-card">
+
+          <div id="formView">
+            <div class="form-header">
+              <div class="section-label">Inquiry Form</div>
+              <h2>Plan Your Coastal Escape</h2>
+              <p>All fields marked with <span style="color:#e05a5a;">*</span> are required. We'll call or email you to confirm.</p>
+            </div>
+
+            <form id="bookingForm" onsubmit="submitForm(event)" novalidate>
+              <input type="hidden" name="access_key" value="0123d47a-b207-468d-bb76-3120b3490b09" />
+              <input type="hidden" name="subject" value="New Booking Inquiry - Mirava Hospitality" />
+              <input type="hidden" name="from_name" value="Mirava Hospitality Website" />
+              <input type="checkbox" name="botcheck" style="display:none;" />
+
+              <!-- Personal Details -->
+              <div class="form-section-title">👤 Your Details</div>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label>Full Name <span class="req">*</span></label>
+                  <input type="text" id="fname" placeholder="e.g. Rahul Sharma" required />
+                </div>
+                <div class="form-group">
+                  <label>Mobile Number <span class="req">*</span></label>
+                  <input type="tel" id="fmobile" placeholder="+91 98XXX XXXXX" required />
+                </div>
+              </div>
+              <div class="form-group" style="margin-top:20px;">
+                <label>Email Address <span class="req">*</span></label>
+                <input type="email" id="femail" placeholder="you@example.com" required />
+              </div>
+
+              <!-- Stay Details -->
+              <div class="form-section-title">📅 Stay Details</div>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label>Check-In Date <span class="req">*</span></label>
+                  <input type="date" id="fcheckin" required />
+                </div>
+                <div class="form-group">
+                  <label>Check-Out Date <span class="req">*</span></label>
+                  <input type="date" id="fcheckout" required />
+                </div>
+              </div>
+              <div class="form-grid-2" style="margin-top:20px;">
+                <div class="form-group">
+                  <label>Number of Guests <span class="req">*</span></label>
+                  <select id="fguests" required>
+                    <option value="">Select guests</option>
+                    <option>1 Guest</option>
+                    <option>2 Guests</option>
+                    <option>3 Guests</option>
+                    <option>4 Guests</option>
+                    <option>5 Guests</option>
+                    <option>6 Guests</option>
+                    <option>7 Guests</option>
+                    <option>8 Guests</option>
+                    <option>9–12 Guests</option>
+                    <option>13+ Guests</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Number of Rooms / Units <span class="req">*</span></label>
+                  <select id="frooms" required>
+                    <option value="">Select rooms</option>
+                    <option>1 Room</option>
+                    <option>2 Rooms</option>
+                    <option>3 Rooms</option>
+                    <option>4 Rooms</option>
+                    <option>5 Rooms</option>
+                    <option>Entire Villa / Cottage</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Property Type -->
+              <div class="form-section-title">🏡 Property Type</div>
+              <div class="type-selector" id="typeSelector">
+                <div class="type-option">
+                  <input type="radio" name="proptype" id="type-villa" value="Villa" />
+                  <label for="type-villa" onclick="filterByType('villa')">
+                    <span class="type-icon">🏖️</span>
+                    <span class="type-name">Villa</span>
+                    <span class="type-desc">Private villa with exclusive amenities</span>
+                  </label>
+                </div>
+                <div class="type-option">
+                  <input type="radio" name="proptype" id="type-hotel" value="Hotel / Resort" />
+                  <label for="type-hotel" onclick="filterByType('hotel')">
+                    <span class="type-icon">🏨</span>
+                    <span class="type-name">Hotel / Resort</span>
+                    <span class="type-desc">Full-service hotel or resort stay</span>
+                  </label>
+                </div>
+                <div class="type-option">
+                  <input type="radio" name="proptype" id="type-cottage" value="Cottage" />
+                  <label for="type-cottage" onclick="filterByType('cottage')">
+                    <span class="type-icon">🏕️</span>
+                    <span class="type-name">Cottage</span>
+                    <span class="type-desc">Cosy, nature-immersive cottage stay</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Property Selection -->
+              <div class="form-section-title">🏘️ Select Property</div>
+              <div class="form-group">
+                <label>Choose a Property <span class="req">*</span></label>
+                <select id="fproperty" required onchange="onPropertyChange()">
+                  <option value="">— Select a property —</option>
+                  <optgroup label="🏨 Hotels &amp; Resorts" id="grp-hotel">
+                    <option value="Hill Resort">Hill Resort — Alibag</option>
+                  </optgroup>
+                  <optgroup label="🏖️ Villas" id="grp-villa">
+                    <option value="Terra - 5 BHK">Terra — 5 BHK Villa</option>
+                    <option value="Aangan - 5 BHK">Aangan — 5 BHK Villa</option>
+                    <option value="Ocean Pearl - 4 BHK">Ocean Pearl — 4 BHK Villa</option>
+                    <option value="Ocean Pearl - 2-2 BHK">Ocean Pearl — 2-2 BHK Villa</option>
+                    <option value="Casa Azul - 3 BHK">Casa Azul — 3 BHK Villa</option>
+                  </optgroup>
+                  <optgroup label="🏕️ Cottages" id="grp-cottage">
+                  </optgroup>
+                </select>
+                <span style="font-size:0.8rem;color:var(--text-light);margin-top:4px;">
+                  More properties coming soon!
+                </span>
+              </div>
+
+              <!-- Additional Info -->
+              <div class="form-section-title">✉️ Additional Information</div>
+              <div class="form-group">
+                <label>Special Requests or Questions</label>
+                <textarea id="fmessage" rows="4" placeholder="Any special requirements, questions about the property, dietary needs, celebration arrangements, etc."></textarea>
+              </div>
+              <div class="form-group" style="margin-top:16px;">
+                <label>How did you hear about us?</label>
+                <select id="fsource">
+                  <option value="">Select an option</option>
+                  <option>Google Search</option>
+                  <option>Instagram / Facebook</option>
+                  <option>Friend / Family Referral</option>
+                  <option>MakeMyTrip / Booking.com</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <!-- Submit -->
+              <div class="form-submit-area">
+                <button type="submit" class="submit-btn">📩 Submit Booking Inquiry</button>
+                <p class="submit-note">🔒 Your information is safe with us. We'll respond within 2–4 hours.</p>
+              </div>
+            </form>
+          </div>
+
+          <!-- Success -->
+          <div class="success-msg" id="successView">
+            <div class="icon">🎉</div>
+            <h3>Booking Inquiry Received!</h3>
+            <p>Thank you, <strong id="guestName"></strong>! We've received your inquiry and our team will call or email you within 2–4 hours to confirm availability and finalise your booking.</p>
+            <a href="properties.html" class="btn btn-outline" style="margin-right:12px;">Browse More Properties</a>
+            <a href="index.html" class="btn btn-primary">Back to Home</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <img src="logo-icon-white.png" alt="Mirava Hospitality" class="logo-img logo-icon-footer" />
+        </div>
+        <p style="margin-top:16px;">Curating the finest coastal stays in Alibag and Murud — on revenue partnership with the best local properties.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="properties.html">All Properties</a></li>
+          <li><a href="contact.html">Book Now</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Locations</h4>
+        <ul>
+          <li><a href="#">Alibag Town</a></li>
+          <li><a href="#">Nagaon Beach</a></li>
+          <li><a href="#">Murud Town</a></li>
+          <li><a href="#">Kashid Beach</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="contact-item"><span>📞</span><span>+91 74474 66111</span></div>
+        <div class="contact-item"><span>📧</span><span>miravahospitality@gmail.com</span></div>
+        <div class="contact-item"><span>📍</span><span>Alibag, Raigad District, Maharashtra</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mirava Hospitality. All rights reserved.</span>
+      <span>Made with 🌅 for the Konkan coast</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('fcheckin').min  = today;
+    document.getElementById('fcheckout').min = today;
+    document.getElementById('fcheckin').addEventListener('change', function() {
+      document.getElementById('fcheckout').min = this.value;
+      if (document.getElementById('fcheckout').value && document.getElementById('fcheckout').value <= this.value) {
+        document.getElementById('fcheckout').value = '';
+      }
+    });
+
+    function filterByType(type) {
+      const sel = document.getElementById('fproperty');
+      sel.value = '';
+      const hotelGrp   = document.getElementById('grp-hotel');
+      const villaGrp   = document.getElementById('grp-villa');
+      const cottageGrp = document.getElementById('grp-cottage');
+      [hotelGrp, villaGrp, cottageGrp].forEach(g => g.style.display = '');
+      if (type === 'hotel')   { villaGrp.style.display = 'none'; cottageGrp.style.display = 'none'; }
+      else if (type === 'villa')   { hotelGrp.style.display = 'none'; cottageGrp.style.display = 'none'; }
+      else if (type === 'cottage') { hotelGrp.style.display = 'none'; villaGrp.style.display = 'none'; }
+    }
+
+    function onPropertyChange() {
+      const val = document.getElementById('fproperty').value;
+      if (!val) return;
+      const hotels = ['Hill Resort'];
+      const villas = ['Terra - 5 BHK', 'Aangan - 5 BHK', 'Ocean Pearl - 4 BHK', 'Ocean Pearl - 2-2 BHK', 'Casa Azul - 3 BHK'];
+      if (hotels.includes(val)) document.getElementById('type-hotel').checked = true;
+      else if (villas.includes(val)) document.getElementById('type-villa').checked = true;
+    }
+
+    // Pre-select from URL param
+    const params = new URLSearchParams(window.location.search);
+    const propParam = params.get('property');
+    if (propParam) {
+      const map = {
+        'hill-resort': 'Hill Resort',
+        'terra': 'Terra - 5 BHK',
+        'aangan': 'Aangan - 5 BHK',
+        'ocean-pearl-4bhk': 'Ocean Pearl - 4 BHK',
+        'ocean-pearl-2bhk': 'Ocean Pearl - 2-2 BHK',
+        'casa-azul': 'Casa Azul - 3 BHK'
+      };
+      const propName = map[propParam];
+      if (propName) { document.getElementById('fproperty').value = propName; onPropertyChange(); }
+    }
+
+    function submitForm(e) {
+      e.preventDefault();
+      const required = ['fname','fmobile','femail','fcheckin','fcheckout','fguests','frooms','fproperty'];
+      let valid = true;
+      required.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) {
+          el.style.borderColor = '#e05a5a';
+          el.style.boxShadow   = '0 0 0 3px rgba(224,90,90,0.12)';
+          valid = false;
+          el.addEventListener('input', () => { el.style.borderColor = ''; el.style.boxShadow = ''; }, { once: true });
+        }
+      });
+      if (!document.querySelector('input[name="proptype"]:checked')) {
+        document.getElementById('typeSelector').style.outline = '2px solid #e05a5a';
+        valid = false;
+      }
+      if (!valid) {
+        const firstError = document.querySelector('input[style*="e05a5a"], select[style*="e05a5a"]');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const form = document.getElementById('bookingForm');
+      const submitBtn = form.querySelector('.submit-btn');
+      const originalBtnText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '⏳ Sending...';
+      submitBtn.disabled = true;
+
+      const formData = new FormData(form);
+      formData.append('Full Name', document.getElementById('fname').value);
+      formData.append('Mobile Number', document.getElementById('fmobile').value);
+      formData.append('Email Address', document.getElementById('femail').value);
+      formData.append('Check-In Date', document.getElementById('fcheckin').value);
+      formData.append('Check-Out Date', document.getElementById('fcheckout').value);
+      formData.append('Number of Guests', document.getElementById('fguests').value);
+      formData.append('Number of Rooms / Units', document.getElementById('frooms').value);
+      formData.append('Property Type', document.querySelector('input[name="proptype"]:checked').value);
+      formData.append('Property', document.getElementById('fproperty').value);
+      formData.append('Special Requests', document.getElementById('fmessage').value);
+      formData.append('How they heard about us', document.getElementById('fsource').value);
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          const name = document.getElementById('fname').value.split(' ')[0];
+          document.getElementById('guestName').textContent = name;
+          document.getElementById('formView').style.display = 'none';
+          document.getElementById('successView').style.display = 'block';
+          window.scrollTo({ top: document.querySelector('.booking-form-card').offsetTop - 100, behavior: 'smooth' });
+        } else {
+          alert('Something went wrong sending your inquiry. Please try again or contact us directly on WhatsApp.');
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+        }
+      })
+      .catch(() => {
+        alert('Something went wrong sending your inquiry. Please try again or contact us directly on WhatsApp.');
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+      });
+    }
+  </script>
+</body>
+</html>    /* Type selector */
     .type-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
     .type-option input[type="radio"] { display: none; }
     .type-option label { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 18px 12px; border: 2px solid var(--border); border-radius: var(--radius-md); cursor: pointer; text-align: center; transition: var(--transition); }
