@@ -43,6 +43,33 @@
       position: relative; z-index: 2;
       padding: 100px 24px 80px;
       max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-text { display: flex; flex-direction: column; }
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-logo-icon {
+      width: 340px;
+      height: 340px;
+      object-fit: contain;
+      animation: heroFloat 4s ease-in-out infinite;
+      filter: drop-shadow(0 24px 48px rgba(237,228,171,0.25));
+    }
+    @keyframes heroFloat {
+      0%   { transform: translateY(0px) rotate(0deg); }
+      30%  { transform: translateY(-18px) rotate(1.5deg); }
+      60%  { transform: translateY(-8px) rotate(-1deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
@@ -160,12 +187,17 @@
     <div class="hero-leaves l2">🌊</div>
     <div class="hero-leaves l3">🌴</div>
     <div class="hero-content">
-      <div class="hero-eyebrow"><span></span> Alibag &amp; Murud Coastal Retreats</div>
-      <h1>Your Perfect <em>Coastal Escape</em> Awaits You</h1>
-      <p class="hero-sub">Curated villas, resorts and cottages on the pristine Konkan coast — booked effortlessly, enjoyed completely.</p>
-      <div class="hero-actions">
-        <a href="properties.html" class="btn btn-white">🏡 Explore Properties</a>
-        <a href="contact.html" class="btn" style="background:rgba(255,255,255,0.15);color:#fff;border:1.5px solid rgba(255,255,255,0.4);">📅 Book Your Stay</a>
+      <div class="hero-text">
+        <div class="hero-eyebrow"><span></span> Alibag &amp; Murud Coastal Retreats</div>
+        <h1>Your Perfect <em>Coastal Escape</em> Awaits You</h1>
+        <p class="hero-sub">Curated villas, resorts and cottages on the pristine Konkan coast — booked effortlessly, enjoyed completely.</p>
+        <div class="hero-actions">
+          <a href="properties.html" class="btn btn-white">🏡 Explore Properties</a>
+          <a href="contact.html" class="btn" style="background:rgba(255,255,255,0.15);color:#fff;border:1.5px solid rgba(255,255,255,0.4);">📅 Book Your Stay</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="logo-icon-white.png" alt="Mirava Hospitality" class="hero-logo-icon" />
       </div>
     </div>
   </section>
